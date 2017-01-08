@@ -77,30 +77,30 @@ var mesh = new THREE.Object3D();
 //////////////////////////////////////////////////////////////////////////////////
 //		render the whole thing on the page
 //////////////////////////////////////////////////////////////////////////////////
-// handle window resize
-// window.addEventListener('resize', function () {
-// 	resize();
-// }, false);
-// resize();
+handle window resize
+window.addEventListener('resize', function () {
+	resize();
+}, false);
+resize();
 
-// function resize() {
-// 	var videoAr = 1.333;
-// 	if (document.getElementById('video-el') && document.getElementById('video-el').videoWidth) {
-// 		videoAr = document.getElementById('video-el').videoWidth / document.getElementById('video-el').videoHeight);
-// 	}
-// 	var w = parseInt(document.body.clientWidth);
-// 	var h = parseInt(document.body.clientHeight);
-// 	var screenAr = w / h;
-// 	if (videoAr > screenAr) {
-// 		renderer.setSize(w, h);
-// 		camera.aspect = w / h;
-// 	} else {
-
-// 	}
-// 	renderer.setSize(w, h);
-// 	camera.aspect = w / h;
-// 	camera.updateProjectionMatrix();
-// }
+function resize() {
+	var videoAr = 1.333;
+	if (document.getElementById('video-el') && document.getElementById('video-el').videoWidth) {
+		videoAr = document.getElementById('video-el').videoWidth / document.getElementById('video-el').videoHeight);
+	}
+	var w = parseInt(document.body.clientWidth);
+	var h = parseInt(document.body.clientHeight);
+	var screenAr = w / h;
+	if (videoAr > screenAr) {
+		renderer.setSize(h * videoAr, h);
+		camera.aspect = h * videoAr / h;
+		document.getElementById('video-el').style.width = h * videoAr + 'px';
+		document.getElementById('video-el').style.height = h + 'px';
+	} else {
+		console.log('tall');
+	}
+	camera.updateProjectionMatrix();
+}
 
 // lights
 var ambientLight = new THREE.AmbientLight(0xffffff, 1);
