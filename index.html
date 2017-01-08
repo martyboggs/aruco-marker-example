@@ -153,8 +153,7 @@ onRenderFcts.push(function () {
 	detectMarkersStats.begin();
 	var markers	= jsArucoMarker.detectMarkers(domElement);
 	detectMarkersStats.end();
-	markerObject3D.visible = false;
-	// see if this.markerId has been found
+	// markerObject3D.visible = false;
 	markers.forEach(function (marker) {
 		// if( marker.id !== 265 )	return
 		jsArucoMarker.markerToObject3D(marker, markerObject3D);
