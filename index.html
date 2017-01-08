@@ -63,7 +63,7 @@ var mesh = new THREE.Object3D();
 window.addEventListener('resize', function () {
 	var w = parseInt(getComputedStyle(document.getElementById('video-el')).getPropertyValue('width'));
 	var h = parseInt(getComputedStyle(document.getElementById('video-el')).getPropertyValue('height'));
-	console.log(w, h, getComputedStyle(document.getElementById('video-el')).getPropertyValue('width');
+	console.log(w, h, getComputedStyle(document.getElementById('video-el')).getPropertyValue('width'));
 	renderer.setSize(w, h);
 	camera.aspect = w / h;
 	camera.updateProjectionMatrix();
