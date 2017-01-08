@@ -84,7 +84,7 @@ resize();
 
 function resize() {
 	var videoAr = 1.333;
-	if (document.getElementById('video-el').videoWidth) {
+	if (document.getElementById('video-el') && document.getElementById('video-el').videoWidth) {
 		console.log(document.getElementById('video-el').videoWidth, document.getElementById('video-el').videoHeight);
 	}
 	var w = parseInt(document.body.clientWidth);
