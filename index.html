@@ -46,6 +46,7 @@ var renderer = new THREE.WebGLRenderer({
 	antialias: false,
 	alpha: true,
 });
+renderer.domElement.id = 'canvas-el';
 document.getElementById('canvases').appendChild(renderer.domElement);
 // array of functions for the rendering loop
 var onRenderFcts = [];
@@ -90,20 +91,32 @@ function resize() {
 	var w = parseInt(window.innerWidth);
 	var h = parseInt(window.innerHeight);
 	var screenAr = w / h;
-	if (screenAr < videoAr) {
+	if (screenAr < videoAr) { // window skinnier
 		renderer.setSize(h * videoAr, h);
 		camera.aspect = h * videoAr / h;
 		if (document.getElementById('video-el')) {
 			document.getElementById('video-el').style.width = h * videoAr + 'px';
 			document.getElementById('video-el').style.height = h + 'px';
 		}
-	} else {
+		// position
+		var left = (h * videoAr - w) / 2;
+		document.getElementById('video-el').style.left = left + 'px';
+		document.getElementById('canvas-el').style.left = left + 'px';
+		document.getElementById('video-el').style.top = 0;
+		document.getElementById('canvas-el').style.top = 0;
+	} else { // window fatter
 		renderer.setSize(w, w / videoAr);
 		camera.aspect = w / (w / videoAr);
 		if (document.getElementById('video-el')) {
 			document.getElementById('video-el').style.width = w + 'px';
 			document.getElementById('video-el').style.height = w / videoAr + 'px';
 		}
+		// position
+		var top = (w / videoAr - h) / 2;
+		document.getElementById('video-el').style.top = top + 'px';
+		document.getElementById('canvas-el').style.top = top + 'px';
+		document.getElementById('video-el').style.left = 0;
+		document.getElementById('canvas-el').style.left = 0;
 	}
 	camera.updateProjectionMatrix();
 }
