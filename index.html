@@ -90,7 +90,7 @@ function resize() {
 	var w = parseInt(window.innerWidth);
 	var h = parseInt(window.innerHeight);
 	var screenAr = w / h;
-	if (screenAr > videoAr) {
+	if (screenAr < videoAr) {
 		renderer.setSize(h * videoAr, h);
 		camera.aspect = h * videoAr / h;
 		if (document.getElementById('video-el')) {
