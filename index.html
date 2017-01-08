@@ -140,6 +140,8 @@ requestAnimationFrame(function animate(now){
 var jsArucoMarker	= new THREEx.JsArucoMarker();
 var videoGrabbing = new THREEx.WebcamGrabbing()
 jsArucoMarker.videoScaleDown = 2
+document.body.appendChild(videoGrabbing.domElement)
+
 //////////////////////////////////////////////////////////////////////////////////
 //		Process video source to find markers
 //////////////////////////////////////////////////////////////////////////////////
