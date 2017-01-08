@@ -84,7 +84,7 @@ setInterval(function () {
 }, 500);
 resize();
 
-function resize() {
+function resize() { // background-size: cover (with stretching)
 	var videoAr = 1.333;
 	if (document.getElementById('video-el') && document.getElementById('video-el').videoWidth) {
 		videoAr = document.getElementById('video-el').videoWidth / document.getElementById('video-el').videoHeight;
@@ -128,21 +128,6 @@ var pointLight = new THREE.PointLight(0xffffff, 1, 0, 2);
 pointLight.position.set(0, 1.4, 3.4);
 scene.add(pointLight, ambientLight);
 
-// render the scene
-onRenderFcts.push(function () {
-	renderStats.begin();
-	renderer.render( scene, camera );
-	renderStats.end();
-});
-// run the rendering loop
-var previousTime = performance.now()
-requestAnimationFrame(function animate (now) {
-	requestAnimationFrame(animate);
-	onRenderFcts.forEach(function (onRenderFct) {
-		onRenderFct(now, now - previousTime)
-	});
-	previousTime = now;
-})
 
 
 // init the marker recognition
@@ -155,17 +140,26 @@ document.body.appendChild(videoGrabbing.domElement);
 var updateMesh = true;
 var counterStart = 30;
 var updateCounter = counterStart;
+mesh.hidden = true;
 
-// process the image source with the marker recognition
-onRenderFcts.push(function () {
+// run the rendering loop
+var previousTime = performance.now()
+function render(now) {
+	requestAnimationFrame(animate);
+
+	renderStats.begin();
+	renderer.render( scene, camera );
+	renderStats.end();
+
 	if (updateMesh) {
 		var domElement	= videoGrabbing.domElement;
 		var markers	= jsArucoMarker.detectMarkers(domElement);
 		markers.forEach(function (marker) {
 			jsArucoMarker.markerToObject3D(marker, markerObject3D);
+			mesh.hidden = false;
 		});
 	}
-
+console.log(mesh);
 	// move mesh
 	mesh.position.x += (markerObject3D.position.x - mesh.position.x) / counterStart;
 	mesh.position.y += (markerObject3D.position.y - mesh.position.y) / counterStart;
@@ -185,7 +179,10 @@ onRenderFcts.push(function () {
 		updateCounter -= 1;
 		updateMesh = false;
 	}
-});
+
+	previousTime = now;
+}
+render();
 
 </script>
 </body>
