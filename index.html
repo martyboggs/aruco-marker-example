@@ -64,7 +64,7 @@ var mesh = new THREE.Object3D();
 (function () {
 	new THREE.JSONLoader().load('js/models/pineapple.json', function (geometry, materials) {
 		mesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
-		mesh.hidden = true;
+		mesh.visible = false;
 		scene.add(mesh);
 	});
 }());
@@ -148,11 +148,9 @@ function render(now) {
 	if (updateMesh) {
 		var domElement = videoGrabbing.domElement;
 		var markers = jsArucoMarker.detectMarkers(domElement);
-		console.log('marker?');
 		markers.forEach(function (marker) {
-			console.log(marker);
 			jsArucoMarker.markerToObject3D(marker, markerObject3D);
-			mesh.hidden = false;
+			mesh.visible = true;
 		});
 	}
 
