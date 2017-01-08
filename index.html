@@ -32,7 +32,6 @@ var renderer = new THREE.WebGLRenderer({
 	antialias: false,
 	alpha: true,
 });
-renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('canvases').appendChild(renderer.domElement);
 // array of functions for the rendering loop
 var onRenderFcts = [];
@@ -62,8 +61,10 @@ var mesh = new THREE.Object3D();
 //////////////////////////////////////////////////////////////////////////////////
 // handle window resize
 window.addEventListener('resize', function () {
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	camera.aspect = window.innerWidth / window.innerHeight;
+	var w = document.getElementById('video-el').style.width
+	var h = document.getElementById('video-el').style.height
+	renderer.setSize(w, h);
+	camera.aspect = w / h;
 	camera.updateProjectionMatrix();
 }, false);
 
@@ -94,6 +95,7 @@ requestAnimationFrame(function animate (now) {
 var jsArucoMarker = new THREEx.JsArucoMarker();
 var videoGrabbing = new THREEx.WebcamGrabbing();
 jsArucoMarker.videoScaleDown = 2;
+videoGrabbing.domElement.id = 'video-el';
 document.body.appendChild(videoGrabbing.domElement);
 
 var updateMesh = true;
