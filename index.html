@@ -93,13 +93,17 @@ function resize() {
 	if (screenAr > videoAr) {
 		renderer.setSize(h * videoAr, h);
 		camera.aspect = h * videoAr / h;
-		document.getElementById('video-el').style.width = h * videoAr + 'px';
-		document.getElementById('video-el').style.height = h + 'px';
+		if (document.getElementById('video-el')) {
+			document.getElementById('video-el').style.width = h * videoAr + 'px';
+			document.getElementById('video-el').style.height = h + 'px';
+		}
 	} else {
 		renderer.setSize(w, w / videoAr);
 		camera.aspect = w / (w / videoAr);
-		document.getElementById('video-el').style.width = w + 'px';
-		document.getElementById('video-el').style.height = w / videoAr + 'px';
+		if (document.getElementById('video-el')) {
+			document.getElementById('video-el').style.width = w + 'px';
+			document.getElementById('video-el').style.height = w / videoAr + 'px';
+		}
 	}
 	camera.updateProjectionMatrix();
 }
