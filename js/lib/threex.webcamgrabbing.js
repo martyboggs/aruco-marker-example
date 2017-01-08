@@ -90,7 +90,7 @@ THREEx.WebcamGrabbing = function(){
                 // it it finds the videoSource 'environment', modify constraints.video
                 for (var i = 0; i != sourceInfos.length; ++i) {
                         var sourceInfo = sourceInfos[i];
-                        if(sourceInfo.kind == "video" && sourceInfo.facing == "environment") {
+                        if(sourceInfo.kind == "videoinput") {
                                 constraints.video = {
                                         optional: [{sourceId: sourceInfo.id}]
                                 }
