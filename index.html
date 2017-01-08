@@ -87,8 +87,8 @@ function resize() {
 	if (document.getElementById('video-el') && document.getElementById('video-el').videoWidth) {
 		videoAr = document.getElementById('video-el').videoWidth / document.getElementById('video-el').videoHeight;
 	}
-	var w = parseInt(document.body.clientWidth);
-	var h = parseInt(document.body.clientHeight);
+	var w = parseInt(window.innerWidth);
+	var h = parseInt(window.innerHeight);
 	var screenAr = w / h;
 	if (videoAr > screenAr) {
 		renderer.setSize(h * videoAr, h);
