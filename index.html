@@ -8,6 +8,8 @@
 <div id="canvases"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
 
+<script src='js/lib/stats.min.js'></script>
+
 <script src='js/lib/js-aruco/svd.js'></script>
 <script src='js/lib/js-aruco/posit1-patched.js'></script>
 <script src='js/lib/js-aruco/cv.js'></script>
@@ -18,19 +20,19 @@
 // check for ssld
 // if (!window.MediaStreamTrack || !window.MediaStreamTrack.getSources) throw new Error('MediaStreamTrack not found. Make sure there\'s a valid ssl certificate');
 
-// var detectMarkersStats = new Stats();
-// detectMarkersStats.setMode( 1 );
-// document.body.appendChild( detectMarkersStats.domElement );
-// detectMarkersStats.domElement.style.position = 'absolute'
-// detectMarkersStats.domElement.style.bottom = '0px'
-// detectMarkersStats.domElement.style.right = '0px'
+var detectMarkersStats = new Stats();
+detectMarkersStats.setMode( 1 );
+document.body.appendChild( detectMarkersStats.domElement );
+detectMarkersStats.domElement.style.position = 'absolute'
+detectMarkersStats.domElement.style.bottom = '0px'
+detectMarkersStats.domElement.style.right = '0px'
 
-// var renderStats = new Stats();
-// renderStats.setMode( 0 );
-// document.body.appendChild( renderStats.domElement );
-// renderStats.domElement.style.position = 'absolute'
-// renderStats.domElement.style.bottom = '0px'
-// renderStats.domElement.style.left = '0px'
+var renderStats = new Stats();
+renderStats.setMode( 0 );
+document.body.appendChild( renderStats.domElement );
+renderStats.domElement.style.position = 'absolute'
+renderStats.domElement.style.bottom = '0px'
+renderStats.domElement.style.left = '0px'
 
 var renderer	= new THREE.WebGLRenderer({
 	antialias: false,
@@ -118,9 +120,9 @@ scene.add(hemiLight);
 
 // render the scene
 onRenderFcts.push(function(){
-	// renderStats.begin();
+	renderStats.begin();
 	renderer.render( scene, camera );
-	// renderStats.end();
+	renderStats.end();
 });
 // run the rendering loop
 var previousTime = performance.now()
@@ -145,10 +147,11 @@ jsArucoMarker.videoScaleDown = 2
 markerObject3D.visible	= false
 // process the image source with the marker recognition
 onRenderFcts.push(function(){
+	console.log('where\'s the domelement video yall');
 	var domElement	= videoGrabbing.domElement
-	// detectMarkersStats.begin();
+	detectMarkersStats.begin();
 	var markers	= jsArucoMarker.detectMarkers(domElement)
-	// detectMarkersStats.end();
+	detectMarkersStats.end();
 	markerObject3D.visible = false
 	// see if this.markerId has been found
 	markers.forEach(function(marker){
