@@ -108,7 +108,8 @@ jsArucoMarker.videoScaleDown = 2;
 document.body.appendChild(videoGrabbing.domElement);
 
 var updateMesh = true;
-var updateCounter = 30;
+var counterStart = 30;
+var updateCounter = counterStart;
 
 // process the image source with the marker recognition
 onRenderFcts.push(function () {
@@ -123,20 +124,20 @@ onRenderFcts.push(function () {
 	}
 	// update mesh sometimes
 	if (updateCounter === 0) {
-		updateCounter = 30;
+		updateCounter = counterStart;
 		updateMesh = true;
 	} else {
 		updateCounter -= 1;
 		updateMesh = false;
-		mesh.position.x += (markerObject3D.position.x - mesh.position.x) / 30;
-		mesh.position.y += (markerObject3D.position.y - mesh.position.y) / 30;
-		mesh.position.z += (markerObject3D.position.z - mesh.position.z) / 30;
-		mesh.rotation.x += (markerObject3D.rotation.x - mesh.rotation.x) / 30;
-		mesh.rotation.y += (markerObject3D.rotation.y - mesh.rotation.y) / 30;
-		mesh.rotation.z += (markerObject3D.rotation.z - mesh.rotation.z) / 30;
-		mesh.scale.x += (markerObject3D.scale.x - mesh.scale.x) / 30;
-		mesh.scale.y += (markerObject3D.scale.y - mesh.scale.y) / 30;
-		mesh.scale.z += (markerObject3D.scale.z - mesh.scale.z) / 30;
+		mesh.position.x += (markerObject3D.position.x - mesh.position.x) / counterStart;
+		mesh.position.y += (markerObject3D.position.y - mesh.position.y) / counterStart;
+		mesh.position.z += (markerObject3D.position.z - mesh.position.z) / counterStart;
+		mesh.rotation.x += (markerObject3D.rotation.x - mesh.rotation.x) / counterStart;
+		mesh.rotation.y += (markerObject3D.rotation.y - mesh.rotation.y) / counterStart;
+		mesh.rotation.z += (markerObject3D.rotation.z - mesh.rotation.z) / counterStart;
+		mesh.scale.x += (markerObject3D.scale.x - mesh.scale.x) / counterStart;
+		mesh.scale.y += (markerObject3D.scale.y - mesh.scale.y) / counterStart;
+		mesh.scale.z += (markerObject3D.scale.z - mesh.scale.z) / counterStart;
 	}
 });
 
