@@ -99,8 +99,8 @@ function resize() {
 			document.getElementById('video-el').style.height = h + 'px';
 			// position
 			var left = (h * videoAr - w) / 2;
-			document.getElementById('video-el').style.left = left + 'px';
-			document.getElementById('canvas-el').style.left = left + 'px';
+			document.getElementById('video-el').style.left = -left + 'px';
+			document.getElementById('canvas-el').style.left = -left + 'px';
 			document.getElementById('video-el').style.top = 0;
 			document.getElementById('canvas-el').style.top = 0;
 		}
@@ -112,8 +112,8 @@ function resize() {
 			document.getElementById('video-el').style.height = w / videoAr + 'px';
 			// position
 			var top = (w / videoAr - h) / 2;
-			document.getElementById('video-el').style.top = top + 'px';
-			document.getElementById('canvas-el').style.top = top + 'px';
+			document.getElementById('video-el').style.top = -top + 'px';
+			document.getElementById('canvas-el').style.top = -top + 'px';
 			document.getElementById('video-el').style.left = 0;
 			document.getElementById('canvas-el').style.left = 0;
 		}
