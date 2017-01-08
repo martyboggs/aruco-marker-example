@@ -12,14 +12,6 @@ THREEx.WebcamGrabbing = function(){
         var domElement        = document.createElement('video')
         domElement.setAttribute('autoplay', true)
 
-	domElement.style.zIndex = -1;
-        domElement.style.position = 'absolute'
-
-	domElement.style.top = '0px'
-	domElement.style.left = '0px'
-	domElement.style.width = '100%'
-	domElement.style.height = '100%'
-
         function onResize(){
                 // is the size of the video available ?
                 if( domElement.videoHeight === 0 )   return
