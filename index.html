@@ -119,16 +119,16 @@ scene.add(hemiLight);
 
 
 // render the scene
-onRenderFcts.push(function(){
+onRenderFcts.push(function () {
 	renderStats.begin();
 	renderer.render( scene, camera );
 	renderStats.end();
 });
 // run the rendering loop
 var previousTime = performance.now()
-requestAnimationFrame(function animate(now){
-	requestAnimationFrame( animate );
-	onRenderFcts.forEach(function(onRenderFct){
+requestAnimationFrame(function animate (now) {
+	requestAnimationFrame(animate);
+	onRenderFcts.forEach(function (onRenderFct) {
 		onRenderFct(now, now - previousTime)
 	});
 	previousTime = now;
@@ -146,7 +146,7 @@ document.body.appendChild(videoGrabbing.domElement);
 //		Process video source to find markers
 //////////////////////////////////////////////////////////////////////////////////
 // set the markerObject3D as visible
-markerObject3D.visible	= true;
+markerObject3D.visible	= true; // change to false
 // process the image source with the marker recognition
 onRenderFcts.push(function () {
 	var domElement	= videoGrabbing.domElement;
@@ -154,7 +154,7 @@ onRenderFcts.push(function () {
 	var markers	= jsArucoMarker.detectMarkers(domElement);
 	detectMarkersStats.end();
 	console.log(1, markers);
-	// markerObject3D.visible = false;
+	// markerObject3D.visible = false; // uncomment
 	markers.forEach(function (marker) {
 		console.log(2, marker);
 		// if( marker.id !== 265 )	return
