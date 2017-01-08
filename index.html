@@ -145,7 +145,7 @@ mesh.hidden = true;
 // run the rendering loop
 var previousTime = performance.now()
 function render(now) {
-	requestAnimationFrame(animate);
+	requestAnimationFrame(render);
 
 	renderStats.begin();
 	renderer.render( scene, camera );
