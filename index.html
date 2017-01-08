@@ -90,13 +90,16 @@ function resize() {
 	var w = parseInt(window.innerWidth);
 	var h = parseInt(window.innerHeight);
 	var screenAr = w / h;
-	if (videoAr > screenAr) {
+	if (screenAr > videoAr) {
 		renderer.setSize(h * videoAr, h);
 		camera.aspect = h * videoAr / h;
 		document.getElementById('video-el').style.width = h * videoAr + 'px';
 		document.getElementById('video-el').style.height = h + 'px';
 	} else {
-		console.log('tall');
+		renderer.setSize(w, w / videoAr);
+		camera.aspect = w / (w / videoAr);
+		document.getElementById('video-el').style.width = w + 'px';
+		document.getElementById('video-el').style.height = w / videoAr + 'px';
 	}
 	camera.updateProjectionMatrix();
 }
