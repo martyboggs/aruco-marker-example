@@ -51,7 +51,6 @@ var onRenderFcts = [];
 // init scene and camera
 var scene = new THREE.Scene()
 var camera	= new THREE.PerspectiveCamera(40, 2, 0.01, 1000);
-// var camera	= new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
 camera.position.z = 2;
 //////////////////////////////////////////////////////////////////////////////////
 // create a markerObject3D
@@ -126,8 +125,6 @@ var pointLight = new THREE.PointLight(0xffffff, 1, 0, 2);
 pointLight.position.set(0, 1.4, 3.4);
 scene.add(pointLight, ambientLight);
 
-
-
 // init the marker recognition
 var jsArucoMarker = new THREEx.JsArucoMarker();
 var videoGrabbing = new THREEx.WebcamGrabbing();
@@ -145,13 +142,15 @@ function render(now) {
 	requestAnimationFrame(render);
 
 	renderStats.begin();
-	renderer.render( scene, camera );
+	renderer.render(scene, camera);
 	renderStats.end();
 
 	if (updateMesh) {
-		var domElement	= videoGrabbing.domElement;
-		var markers	= jsArucoMarker.detectMarkers(domElement);
+		var domElement = videoGrabbing.domElement;
+		var markers = jsArucoMarker.detectMarkers(domElement);
+		console.log('marker?');
 		markers.forEach(function (marker) {
+			console.log(marker);
 			jsArucoMarker.markerToObject3D(marker, markerObject3D);
 			mesh.hidden = false;
 		});
