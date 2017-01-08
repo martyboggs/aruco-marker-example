@@ -77,7 +77,8 @@ THREEx.WebcamGrabbing = function(){
         }, 500)
 
         // get the media sources
-        navigator.mediaDevices.enumerateDevices(function(sourceInfos) {
+        navigator.mediaDevices.enumerateDevices().then(function(sourceInfos) {
+                console.log(sourceInfos);
                 // define getUserMedia() constraints
                 var constraints = {
                         video: true,
