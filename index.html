@@ -61,9 +61,9 @@ var mesh = new THREE.Object3D();
 //////////////////////////////////////////////////////////////////////////////////
 // handle window resize
 window.addEventListener('resize', function () {
-	var w = parseInt(document.getElementById('video-el').style.width);
-	var h = parseInt(document.getElementById('video-el').style.height);
-	console.log(w, h, document.getElementById('video-el').style);
+	var w = parseInt(getComputedStyle(document.getElementById('video-el')).getPropertyValue('width'));
+	var h = parseInt(getComputedStyle(document.getElementById('video-el')).getPropertyValue('height'));
+	console.log(w, h, getComputedStyle(document.getElementById('video-el')).getPropertyValue('width');
 	renderer.setSize(w, h);
 	camera.aspect = w / h;
 	camera.updateProjectionMatrix();
