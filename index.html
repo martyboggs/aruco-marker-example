@@ -60,7 +60,7 @@ var mesh = new THREE.Object3D();
 	new THREE.JSONLoader().load('js/models/pineapple.json', function (geometry, materials) {
 		mesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
 		mesh.scale.set(0.3, 0.3, 0.3);
-		mesh.rotation.set(0, 0, 90 * Math.PI / 180);
+		mesh.rotation.set(0, 90 * Math.PI / 180, 0);
 		scene.add( mesh );
 		// var mesh = new THREE.AxisHelper
 		// markerObject3D.add( mesh );
