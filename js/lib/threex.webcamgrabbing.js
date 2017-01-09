@@ -8,7 +8,7 @@ window.URL = window.URL || window.webkitURL;
  * Grab camera
  * @constructor
  */
-THREEx.WebcamGrabbing = function(){
+THREEx.WebcamGrabbing = function () {
         var domElement        = document.createElement('video')
         domElement.setAttribute('autoplay', true)
 
