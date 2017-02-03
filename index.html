@@ -3,6 +3,7 @@
 <head>
 	<meta charset=utf-8>
 	<title>Three.js World</title>
+	<link rel="stylesheet" type="text/css" href="dat.gui.css">
 	<style>
 	body {
 		margin: 0;
@@ -24,6 +25,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
 
 <script src='js/lib/stats.min.js'></script>
+<script src='js/lib/dat.gui.js'></script>
+<script src='js/lib/dat.gui.map.js'></script>
 
 <script src='js/lib/js-aruco/svd.js'></script>
 <script src='js/lib/js-aruco/posit1-patched.js'></script>
@@ -72,7 +75,11 @@ var boneTests = [];
 		scene.add(mesh);
 		scene.add(new THREE.SkeletonHelper(mesh));
 console.log(mesh);
+var gui = new dat.GUI();
 		for (var i = 0; i < mesh.skeleton.bones.length; i += 1) {
+			gui.add(mesh.skeleton.bones[i].position, 'x', -10, 10);
+			gui.add(mesh.skeleton.bones[i].position, 'y', -10, 10);
+			gui.add(mesh.skeleton.bones[i].position, 'z', -10, 10);
 			var boneTest = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), new THREE.MeshLambertMaterial({color: 'green'}));
 			boneTests.push(boneTest);
 			scene.add(boneTest);
