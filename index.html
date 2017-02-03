@@ -73,7 +73,9 @@ var boneTests = [];
 		scene.add(new THREE.SkeletonHelper(mesh));
 
 		for (var i = 0; i < mesh.skeleton.bones.length; i += 1) {
-			boneTests.push(new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), new THREE.MeshLambertMaterial({color: 'green'})));
+			var boneTest = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), new THREE.MeshLambertMaterial({color: 'green'}));
+			boneTests.push(boneTest);
+			scene.add(boneTest);
 		}
 	});
 }());
@@ -178,6 +180,7 @@ function render(now) {
 
 	for (var i = 0; i < boneTests.length; i += 1) {
 		boneTests[i].position.set(mesh.skeleton.bones[i].position.x, mesh.skeleton.bones[i].position.y, mesh.skeleton.bones[i].position.z);
+
 	}
 
 	// update mesh sometimes
