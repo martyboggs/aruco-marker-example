@@ -71,7 +71,7 @@ var boneTests = [];
 		mesh.visible = false;
 		scene.add(mesh);
 		scene.add(new THREE.SkeletonHelper(mesh));
-
+console.log(mesh);
 		for (var i = 0; i < mesh.skeleton.bones.length; i += 1) {
 			var boneTest = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), new THREE.MeshLambertMaterial({color: 'green'}));
 			boneTests.push(boneTest);
