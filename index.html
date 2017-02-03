@@ -57,6 +57,7 @@ camera.position.z = 2;
 //////////////////////////////////////////////////////////////////////////////////
 var markerObject3D = new THREE.Object3D();
 var mesh = new THREE.Object3D();
+var boneTests = [];
 //////////////////////////////////////////////////////////////////////////////////
 //		add an object in the markerObject3D
 //////////////////////////////////////////////////////////////////////////////////
@@ -70,8 +71,14 @@ var mesh = new THREE.Object3D();
 		mesh.visible = false;
 		scene.add(mesh);
 		scene.add(new THREE.SkeletonHelper(mesh));
+
+		for (var i = 0; i < mesh.skeleton.bones.length; i += 1) {
+			boneTests.push(new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), new THREE.MeshLambertMaterial({color: 'green'})));
+		}
 	});
 }());
+
+
 
 //////////////////////////////////////////////////////////////////////////////////
 //		render the whole thing on the page
@@ -168,6 +175,10 @@ function render(now) {
 	mesh.scale.x += (markerObject3D.scale.x - mesh.scale.x) / counterStart;
 	mesh.scale.y += (markerObject3D.scale.y - mesh.scale.y) / counterStart;
 	mesh.scale.z += (markerObject3D.scale.z - mesh.scale.z) / counterStart;
+
+	for (var i = 0; i < boneTests.length; i += 1) {
+		boneTests[i].position.set(mesh.skeleton.bones[i].position.x, mesh.skeleton.bones[i].position.y, mesh.skeleton.bones[i].position.z);
+	}
 
 	// update mesh sometimes
 	if (updateCounter === 0) {
