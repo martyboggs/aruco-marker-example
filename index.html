@@ -69,6 +69,7 @@ var mesh = new THREE.Object3D();
 		mesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
 		mesh.visible = false;
 		scene.add(mesh);
+		scene.add(new THREE.SkeletonHelper(mesh));
 	});
 }());
 
