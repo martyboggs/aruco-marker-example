@@ -179,8 +179,7 @@ function render(now) {
 	mesh.scale.z += (markerObject3D.scale.z - mesh.scale.z) / counterStart;
 
 	for (var i = 0; i < boneTests.length; i += 1) {
-		boneTests[i].position.set(mesh.skeleton.bones[i].position.x, mesh.skeleton.bones[i].position.y, mesh.skeleton.bones[i].position.z);
-
+		boneTests[i].position.set(mesh.position.x + mesh.skeleton.bones[i].position.x, mesh.position.y + mesh.skeleton.bones[i].position.y, mesh.position.z + mesh.skeleton.bones[i].position.z);
 	}
 
 	// update mesh sometimes
