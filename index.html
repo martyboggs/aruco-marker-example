@@ -62,7 +62,7 @@ var mesh = new THREE.Object3D();
 //////////////////////////////////////////////////////////////////////////////////
 // add some debug display
 (function () {
-	new THREE.JSONLoader().load('js/models/pineapple.json', function (geometry, materials) {
+	new THREE.JSONLoader().load('js/models/monster2.json', function (geometry, materials) {
 		mesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
 		mesh.visible = false;
 		scene.add(mesh);
